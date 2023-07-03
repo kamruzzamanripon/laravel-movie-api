@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Movie extends Model
+class Category extends Model
 {
     use HasFactory;
 
@@ -15,16 +15,6 @@ class Movie extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
-        'category_id',
-        'description',
-        'image',
-        'views',
-        'likes',
+        'name',
     ];
-
-    public function categories()
-    {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
-    }
 }

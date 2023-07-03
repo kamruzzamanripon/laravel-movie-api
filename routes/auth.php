@@ -23,7 +23,10 @@ Route::post( '/logout', [AuthenticatedSessionController::class, 'logout'] )
 Route::post( '/reset-password', [NewPasswordController::class, 'resetPassword'] )
     ->middleware( 'auth:sanctum' )
     ->name( 'password.store' );
-    
+
+
+
+//Note: working future if i have time 
 Route::post( '/forgot-password', [PasswordResetLinkController::class, 'store'] )
     ->middleware( 'guest' )
     ->name( 'password.email' );
