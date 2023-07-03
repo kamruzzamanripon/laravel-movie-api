@@ -36,7 +36,7 @@ class MovieController extends Controller
     }
 
 
-    public function store(MovieRequest $request)
+    public function store(MovieRequest $request):JsonResponse
     {
         try{
             $data = $this->movieService->store($request);
@@ -50,8 +50,17 @@ class MovieController extends Controller
       
     }
 
-    public function update(Movie $movie, MovieRequest $request)
+    public function update(Movie $movie, Request $request):JsonResponse
     {
-        
+
+        $data = $this->movieService->update($movie, $request);
+        return $this->successResponse($data, 'Movie Update Successfully', 200);
+       
+    }
+
+    public function delete(Movie $movie):JsonResponse
+    {
+        $data = $this->movieService->delete($movie);
+        return $this->successResponse($data, 'Movie Delete Successfully', 200);
     }
 }
