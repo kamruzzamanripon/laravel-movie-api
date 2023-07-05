@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\MovieController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,14 +17,22 @@ use Illuminate\Support\Facades\Route;
 */
 require __DIR__ . '/auth.php';
 
-//all movie show
+//movie 
 Route::get('all-movies', [MovieController::class, 'allMovie']);
 Route::get('single-movie/{movie}', [MovieController::class, 'singleMovie']);
 
-Route::post('movie-store', [MovieController::class, 'store']);
-Route::post('movie-update/{movie}', [MovieController::class, 'update']);
-Route::delete('movie-delete/{movie}', [MovieController::class, 'delete']);
+//Category 
+Route::get('all-category', [CategoryController::class, 'allCategory']);
+Route::get('single-category/{category}', [CategoryController::class, 'singleCategory']);
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    //movie 
+    Route::post('movie-store', [MovieController::class, 'store']);
+    Route::post('movie-update/{movie}', [MovieController::class, 'update']);
+    Route::delete('movie-delete/{movie}', [MovieController::class, 'delete']);
+
+    //Category
+    Route::post('category-store', [CategoryController::class, 'store']);
+    Route::post('category-update/{category}', [CategoryController::class, 'update']);
+    Route::delete('category-delete/{category}', [CategoryController::class, 'delete']);
 });
