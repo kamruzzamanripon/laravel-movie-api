@@ -30,9 +30,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('movie-store', [MovieController::class, 'store']);
     Route::post('movie-update/{movie}', [MovieController::class, 'update']);
     Route::delete('movie-delete/{movie}', [MovieController::class, 'delete']);
-
+    
     //Category
     Route::post('category-store', [CategoryController::class, 'store']);
     Route::post('category-update/{category}', [CategoryController::class, 'update']);
-    Route::delete('category-delete/{category}', [CategoryController::class, 'delete']);
+      Route::delete('category-delete/{category}', [CategoryController::class, 'delete']);
 });

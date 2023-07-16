@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Storage;
  */
 class ImageStoreService
 {
+     /**
+     * Handle storing an image file.
+     *
+     * @param string $destinationPath The destination path where the image will be stored.
+     * @param mixed $file The image file to store.
+     * @return string|false The path where the image is stored, or false if there was an issue storing the file.
+     */
     public function handle($destinationPath='public/images', $file)
     {
         

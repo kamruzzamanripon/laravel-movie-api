@@ -22,9 +22,10 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         // Get the category ID from the route parameters
-                
+        $categoryId = $this->route('category')->id;
+        
         return [
-            'name' => ['required', 'unique:categories,name'],
+            'name' => ['required', 'unique:categories,name,'. $categoryId],
         ];
         
     }

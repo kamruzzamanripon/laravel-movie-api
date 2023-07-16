@@ -19,6 +19,12 @@ class CategoryService
         $this->imageStoreService = $imageStoreService;
     }
 
+        
+    /**
+     * allCategory
+     *
+     * @return mixed
+     */
     public function allCategory(): mixed
     {
         return Category::all();
@@ -34,7 +40,16 @@ class CategoryService
         ]);
     }
 
-    public function update($category, $request)
+    
+
+    /**
+     * Update a category.
+     *
+     * @param Category $category The category to update.
+     * @param Illuminate\Http\Request $request The request containing the updated data.
+     * @return bool Whether the update was successful or not.
+     */
+    public function update($category, $request): bool
     {
         if ($request->hasFile('image')) {
             //1st delete previous Image
@@ -44,15 +59,22 @@ class CategoryService
             //2nd new Image store
             $imagePath = $this->imageStoreService->handle('public/categories', $request->file('image'));
         }
-
+       
         return $category->update([
-            'name'       => $request->filled('name') ? $request->name : $category->name,
+            'name'       =>  $request->name ? $request->name : $category->name,
             'image'       => $request->hasFile('image') ? $imagePath : $category->image,
             
         ]);
     }
 
-    public function delete($category)
+
+    /**
+     * Delete a category.
+     *
+     * @param Category $category The category to delete.
+     * @return bool Whether the deletion was successful or not.
+     */
+    public function delete($category): bool
     {
         if ($category->image) {
             Storage::delete($category->image);
