@@ -49,6 +49,23 @@ class MovieController extends Controller
 
       
     }
+  
+
+    public function aiMovieStore(Request $request)
+    {
+       
+       
+        try{
+            $data = $this->movieService->aiStore($request);
+            return $this->successResponse($data, 'Movie Store Successfully', 200);
+           
+        }catch(\Exception $e ){
+            Log::error($e);
+            return $this->errorResponse();
+        }
+
+      
+    }
 
     public function update(Movie $movie, Request $request):JsonResponse
     {

@@ -34,6 +34,18 @@ class MovieService
             'category_id' => $request->category_id,
         ]);
     }
+    
+    public function aiStore($request)
+    {
+        $imagePath = $this->imageStoreService->handleBase64('public/movies', $request->base64Data);
+
+        return Movie::create([
+            'title'       => $request->title,
+            'description' => $request->description,
+            'image'       => $imagePath !== false ? $imagePath : 'public/movies/default.jpg',
+            'category_id' => $request->category_id,
+        ]);
+    }
 
     public function update($movie, $request)
     {

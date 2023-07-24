@@ -17,10 +17,16 @@ use Illuminate\Support\Facades\Route;
 */
 require __DIR__ . '/auth.php';
 
+
+Route::get('csrf-token', function () {
+  return response()->json(['token' => csrf_token()]);
+});
+
 //movie 
 Route::get('all-movies', [MovieController::class, 'allMovie']);
 Route::get('single-movie/{movie}', [MovieController::class, 'singleMovie']);
 
+Route::post('ai-movie-store', [MovieController::class, 'aiMovieStore']);
 //Category 
 Route::get('all-category', [CategoryController::class, 'allCategory']);
 Route::get('single-category/{category}', [CategoryController::class, 'singleCategory']);
