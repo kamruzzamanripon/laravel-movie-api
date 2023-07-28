@@ -30,6 +30,13 @@ class CategoryController extends Controller
         $formatedData = CategoryResource::collection($data);
         return $this->successResponse($formatedData, 'All Category data Show', 200);
     }
+
+    public function categoryWiseMovies()
+    {
+        $data = $this->categoryService->categoryWiseMovies();
+        $formatedData = CategoryResource::collection($data)->response()->getData();
+        return $this->successResponse($formatedData, 'Top Movie data Show', 200);
+    }
     
 
     public function singleCategory(Category $category):JsonResponse

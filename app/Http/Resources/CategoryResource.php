@@ -22,6 +22,9 @@ class CategoryResource extends JsonResource
             'name' => $this->name,
             //'image' => $this->image,
             'image' => $this->image ? $rootUrl . Storage::url($this->image) : null,
+            'movies' =>  $this->movies
         ];
+
+        
     }
 }

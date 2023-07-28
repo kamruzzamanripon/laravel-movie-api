@@ -27,7 +27,13 @@ class MovieController extends Controller
         return $this->successResponse($formatedData, 'All Movie data Show', 200);
     }
 
-
+    public function topMovies()
+    {
+        $data = $this->movieService->topMovies();
+        $formatedData = MovieResource::collection($data)->response()->getData();
+        return $this->successResponse($formatedData, 'Top Movie data Show', 200);
+    } 
+        
     public function singleMovie(Movie $movie):JsonResponse
     {
         $data = new MovieResource($movie);
@@ -53,8 +59,6 @@ class MovieController extends Controller
 
     public function aiMovieStore(Request $request)
     {
-       
-       
         try{
             $data = $this->movieService->aiStore($request);
             return $this->successResponse($data, 'Movie Store Successfully', 200);

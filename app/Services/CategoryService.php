@@ -40,6 +40,12 @@ class CategoryService
         ]);
     }
 
+
+    public function categoryWiseMovies()
+    {
+        return Category::with('movies')->get();
+        //return Category::with('movies')->get();
+    }
     
 
     /**

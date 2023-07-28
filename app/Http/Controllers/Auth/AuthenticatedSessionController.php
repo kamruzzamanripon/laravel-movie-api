@@ -37,9 +37,6 @@ class AuthenticatedSessionController extends Controller
     public function login(LoginRequest $request): JsonResponse
     {
         
-
-        
-
         if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return $this->errorResponse('The provided credentials are not correct', 401);
         }

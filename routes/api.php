@@ -24,6 +24,8 @@ Route::get('csrf-token', function () {
 
 //movie 
 Route::get('all-movies', [MovieController::class, 'allMovie']);
+Route::get('top-movies', [MovieController::class, 'topMovies']);
+Route::get('category-wise-movies', [CategoryController::class, 'categoryWiseMovies']);
 Route::get('single-movie/{movie}', [MovieController::class, 'singleMovie']);
 
 Route::post('ai-movie-store', [MovieController::class, 'aiMovieStore']);

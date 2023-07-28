@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Category;
 use App\Models\Movie;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,6 +24,11 @@ class MovieService
         return Movie::with('categories')->paginate(15);
     }
 
+    public function topMovies():mixed
+    {
+       return Movie::with('categories')->orderBy('created_at', 'desc')->limit(8)->get();
+    } 
+        
     public function store($request)
     {
         $imagePath = $this->imageStoreService->handle('public/movies', $request->file('image'));
