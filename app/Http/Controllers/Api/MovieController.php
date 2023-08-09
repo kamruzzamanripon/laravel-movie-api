@@ -43,7 +43,7 @@ class MovieController extends Controller
 
 
     public function store(MovieRequest $request):JsonResponse
-    {
+    { //return response()->json($request->all());
         try{
             $data = $this->movieService->store($request);
             return $this->successResponse($data, 'Movie Store Successfully', 200);
