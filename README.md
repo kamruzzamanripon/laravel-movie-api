@@ -24,3 +24,4 @@
 
 1. change database name and password into env file.
 2. composer install / update
+3. wait for test result
